@@ -1,19 +1,21 @@
-CC := gcc
-CFLAGS := -std=c99 -Wall -Wextra -O2
-SRCS := aes.c common.c driver_aes_CBC.c
-HDRS := aes.h common.h
-OBJS := $(SRCS:.c=.o)
-TARGET := aes_cbc
+CC = gcc
+CFLAGS = -Wall -Wextra -O2 -std=c99
 
-all: $(TARGET)
+all: tea_cbc
 
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^
+tea_cbc: tea_main.o tea.o common.o
+	$(CC) $(CFLAGS) -o tea_cbc $^
 
-%.o: %.c $(HDRS)
-	$(CC) $(CFLAGS) -c $<
+tea_main.o: tea_main.c tea.h common.h
+	$(CC) $(CFLAGS) -c tea_main.c -o tea_main.o
+
+tea.o: tea.c tea.h
+	$(CC) $(CFLAGS) -c tea.c -o tea.o
+
+common.o: common.c common.h
+	$(CC) $(CFLAGS) -c common.c -o common.o
 
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -f tea_cbc *.o
 
 .PHONY: all clean
