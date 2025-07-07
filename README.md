@@ -36,7 +36,7 @@ make
 # Decrypt a file
 ./ecc -d -i encrypted.bin -k mykey.priv -o decrypted.txt
 ```
-Advanced Encryption Standard (AES)
+### Advanced Encryption Standard (AES)
 Implementation of AES with:
 
 - Support for 128, 192, and 256-bit keys
@@ -54,7 +54,7 @@ make
 # Decrypt a file
 ./aes_cbc -d -i encrypted.bin -k key.bin -o decrypted.txt
 ```
-Tiny Encryption Algorithm (TEA)
+### Tiny Encryption Algorithm (TEA)
 A lightweight block cipher implementation:
 
 - 64-bit block size
