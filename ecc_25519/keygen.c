@@ -10,15 +10,6 @@ static void usage(const char *prog) {
     exit(EXIT_FAILURE);
 }
 
-// Debug function to print key bytes
-static void print_key_bytes(const char* label, const uint8_t* key, size_t len) {
-    printf("%s: ", label);
-    for (size_t i = 0; i < (len > 8 ? 8 : len); i++) {
-        printf("%02x ", key[i]);
-    }
-    printf("...\n");
-}
-
 int main(int argc, char **argv) {
     if (argc != 2) {
         usage(argv[0]);

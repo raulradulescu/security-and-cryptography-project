@@ -1,21 +1,25 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -O2 -std=c99
 
+SOURCES = tea.c common.c tea_main.c
+OBJECTS = $(SOURCES:.c=.o)
+
 all: tea_cbc
 
-tea_cbc: tea_main.o tea.o common.o
-	$(CC) $(CFLAGS) -o tea_cbc $^
+tea_cbc: $(OBJECTS)
+	$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
-tea_main.o: tea_main.c tea.h common.h
-	$(CC) $(CFLAGS) -c tea_main.c -o tea_main.o
-
-tea.o: tea.c tea.h
-	$(CC) $(CFLAGS) -c tea.c -o tea.o
-
-common.o: common.c common.h
-	$(CC) $(CFLAGS) -c common.c -o common.o
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f tea_cbc *.o
+	rm -f $(OBJECTS) tea_cbc *.exe
 
-.PHONY: all clean
+test:
+	@echo "Manual testing instructions:"
+	@echo "1. Create a key file: echo 'MySecretKey12345' > key.txt"
+	@echo "2. Create test input: echo 'Hello TEA encryption!' > input.txt"
+	@echo "3. Encrypt: ./tea_cbc -e -i input.txt -k key.txt -o encrypted.bin"
+	@echo "4. Decrypt: ./tea_cbc -d -i encrypted.bin -k key.txt -o decrypted.txt"
+
+.PHONY: all clean test

@@ -48,3 +48,5 @@ deps/
 AES/aes_cbc
 TEA/tea_cbc
 ecc_25519/ecc_main
+*.enc
+*.txt

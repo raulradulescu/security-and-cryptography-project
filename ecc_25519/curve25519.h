@@ -17,6 +17,7 @@ typedef struct {
 void curve25519_generate_keypair(key_pair_t *keypair);
 void curve25519_compute_public(uint8_t *public_key, const uint8_t *private_key);
 void curve25519_shared_secret(uint8_t *shared, const uint8_t *private_key, const uint8_t *public_key);
+void curve25519_scalarmult(uint8_t *q, const uint8_t *n, const uint8_t *p);
 
 // Encryption and decryption functions
 int ecc_encrypt(const uint8_t *public_key, const uint8_t *plaintext, 
